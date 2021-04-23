@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Getter
@@ -25,7 +24,6 @@ public class SignupRequest {
     @NotBlank(message = "Last name can't be blank")
     private String lastName;
 
-    @NotEmpty(message = "No role assigned yet!")
     private Set<String> roles;
 
 }

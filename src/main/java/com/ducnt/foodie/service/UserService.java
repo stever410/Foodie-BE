@@ -38,20 +38,19 @@ public class UserService {
                 request.getEmail(),
                 encoder.encode(request.getPassword())
         );
-        Set<String> strRoles = request.getRoles();
         Set<Role> roles = new HashSet<>();
-        if(strRoles == null) {
+        if(request.getRoles() == null || request.getRoles().isEmpty()) {
             Role userRole = roleRepository.findByName(UserRole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException(("Role not found")));
             roles.add(userRole);
         } else {
-            strRoles.forEach(role -> {
-                if(role == "admin") {
+            request.getRoles().forEach(role -> {
+                if(role.equals("admin")) {
                     Role adminRole = roleRepository.findByName(UserRole.ROLE_ADMIN)
                             .orElseThrow(() -> new RuntimeException(("Role not found")));
                     roles.add(adminRole);
                 }
-                if(role == "user") {
+                if(role.equals("user")) {
                     Role userRole = roleRepository.findByName(UserRole.ROLE_USER)
                             .orElseThrow(() -> new RuntimeException(("Role not found")));
                     roles.add(userRole);
