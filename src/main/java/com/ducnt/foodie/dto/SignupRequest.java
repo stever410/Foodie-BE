@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Getter
@@ -16,6 +17,7 @@ public class SignupRequest {
     private String email;
 
     @NotBlank(message = "Password can't be blank")
+    @Size(min = 6, message = "Password min length is 6")
     private String password;
 
     @NotBlank(message = "First name can't be blank")
