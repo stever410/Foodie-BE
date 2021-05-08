@@ -1,5 +1,6 @@
-package com.ducnt.foodie.model;
+package com.ducnt.foodie.dto;
 
+import com.ducnt.foodie.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +13,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Data
-public class UserDetailsImp implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
 
     private UUID id;
     private String email;
@@ -22,7 +23,7 @@ public class UserDetailsImp implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImp(UUID id, String email, String firstName, String lastName, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailsImpl(UUID id, String email, String firstName, String lastName, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
@@ -31,11 +32,11 @@ public class UserDetailsImp implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetailsImp build(User user) {
+    public static UserDetailsImpl build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
-        return new UserDetailsImp(
+        return new UserDetailsImpl(
                 user.getId(),
                 user.getEmail(),
                 user.getFirstName(),

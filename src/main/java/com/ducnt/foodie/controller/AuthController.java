@@ -1,9 +1,7 @@
 package com.ducnt.foodie.controller;
 
 import com.ducnt.foodie.dto.LoginRequest;
-import com.ducnt.foodie.dto.SignupRequest;
 import com.ducnt.foodie.service.AuthService;
-import com.ducnt.foodie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,13 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    AuthService authService;
-    UserService userService;
+    private final AuthService authService;
 
     @Autowired
-    public AuthController(AuthService authService, UserService userService) {
+    public AuthController(AuthService authService) {
         this.authService = authService;
-        this.userService = userService;
     }
 
     @PostMapping("/login")
@@ -28,8 +24,4 @@ public class AuthController {
         return ResponseEntity.ok(authService.authenticateUser(request));
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Validated @RequestBody SignupRequest request) {
-        return ResponseEntity.ok(userService.addNewUser(request));
-    }
 }

@@ -2,7 +2,7 @@ package com.ducnt.foodie.service;
 
 import com.ducnt.foodie.dto.JwtResponse;
 import com.ducnt.foodie.dto.LoginRequest;
-import com.ducnt.foodie.model.UserDetailsImp;
+import com.ducnt.foodie.dto.UserDetailsImpl;
 import com.ducnt.foodie.util.JwtUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,7 +32,7 @@ public class AuthService {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-        UserDetailsImp userDetails = (UserDetailsImp) authentication.getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());

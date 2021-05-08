@@ -1,6 +1,6 @@
 package com.ducnt.foodie.filter;
 
-import com.ducnt.foodie.service.UserDetailsServiceImp;
+import com.ducnt.foodie.service.UserDetailsServiceImpl;
 import com.ducnt.foodie.util.JwtUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +24,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private JwtUtils jwtUtils;
 
     @Autowired
-    private UserDetailsServiceImp userDetailService;
+    private UserDetailsServiceImpl userDetailService;
 
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 

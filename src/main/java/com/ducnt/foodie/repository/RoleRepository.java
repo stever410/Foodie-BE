@@ -1,6 +1,6 @@
 package com.ducnt.foodie.repository;
 
-import com.ducnt.foodie.common.UserRole;
+import com.ducnt.foodie.constants.UserRole;
 import com.ducnt.foodie.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

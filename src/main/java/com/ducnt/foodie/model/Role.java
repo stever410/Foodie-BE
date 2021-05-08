@@ -1,6 +1,6 @@
 package com.ducnt.foodie.model;
 
-import com.ducnt.foodie.common.UserRole;
+import com.ducnt.foodie.constants.UserRole;
 import lombok.Data;
 
 import javax.persistence.*;

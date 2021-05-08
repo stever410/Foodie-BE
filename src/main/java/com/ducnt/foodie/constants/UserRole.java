@@ -1,4 +1,4 @@
-package com.ducnt.foodie.common;
+package com.ducnt.foodie.constants;
 
 public enum UserRole {
     ROLE_USER,

@@ -1,6 +1,6 @@
 package com.ducnt.foodie.service;
 
-import com.ducnt.foodie.common.UserRole;
+import com.ducnt.foodie.constants.UserRole;
 import com.ducnt.foodie.dto.MessageResponse;
 import com.ducnt.foodie.dto.SignupRequest;
 import com.ducnt.foodie.model.Role;

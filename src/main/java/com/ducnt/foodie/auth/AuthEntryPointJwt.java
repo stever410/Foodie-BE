@@ -1,4 +1,4 @@
-package com.ducnt.foodie.config;
+package com.ducnt.foodie.auth;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +18,6 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         logger.error("Unauthorize error: {}", authException.getMessage());
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid username or password");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized request");
     }
 }
