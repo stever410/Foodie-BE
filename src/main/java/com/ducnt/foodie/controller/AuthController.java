@@ -1,6 +1,6 @@
 package com.ducnt.foodie.controller;
 
-import com.ducnt.foodie.dto.LoginRequest;
+import com.ducnt.foodie.dto.LoginDto;
 import com.ducnt.foodie.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Validated @RequestBody LoginRequest request) {
+    public ResponseEntity<?> authenticateUser(@Validated @RequestBody LoginDto request) {
         return ResponseEntity.ok(authService.authenticateUser(request));
     }
 

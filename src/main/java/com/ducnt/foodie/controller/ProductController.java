@@ -21,7 +21,7 @@ public class ProductController {
     @GetMapping
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<?> getProducts() {
-        return ResponseEntity.ok(200);
+        return productService.getProducts();
     }
 
     @PostMapping

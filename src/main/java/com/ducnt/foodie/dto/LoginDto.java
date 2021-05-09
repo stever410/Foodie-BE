@@ -4,12 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageResponse {
-    @NotBlank
-    private String message;
+public class LoginDto {
+    private String username;
+    private String password;
+
 }

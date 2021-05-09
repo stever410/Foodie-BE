@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
-public class JwtResponse {
+public class ResponseJwtDto {
     @NonNull
     private String token;
 
@@ -29,7 +29,7 @@ public class JwtResponse {
     @NonNull
     private List<String> roles;
 
-    public JwtResponse(@NonNull String token, @NonNull UUID id, @NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull List<String> roles) {
+    public ResponseJwtDto(@NonNull String token, @NonNull UUID id, @NonNull String firstName, @NonNull String lastName, @NonNull String email, @NonNull List<String> roles) {
         this.token = token;
         this.id = id;
         this.firstName = firstName;

@@ -1,13 +1,14 @@
 package com.ducnt.foodie.service;
 
 import com.ducnt.foodie.constants.UserRole;
-import com.ducnt.foodie.dto.MessageResponse;
-import com.ducnt.foodie.dto.SignupRequest;
+import com.ducnt.foodie.dto.SignupDto;
 import com.ducnt.foodie.model.Role;
 import com.ducnt.foodie.model.User;
 import com.ducnt.foodie.repository.RoleRepository;
 import com.ducnt.foodie.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,7 @@ public class UserService {
         this.encoder = encoder;
     }
 
-    public MessageResponse addNewUser(@Valid SignupRequest request) {
+    public ResponseEntity<User> addNewUser(@Valid SignupDto request) {
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email existed");
         }
@@ -39,18 +40,18 @@ public class UserService {
                 encoder.encode(request.getPassword())
         );
         Set<Role> roles = new HashSet<>();
-        if(request.getRoles() == null || request.getRoles().isEmpty()) {
+        if (request.getRoles() == null || request.getRoles().isEmpty()) {
             Role userRole = roleRepository.findByName(UserRole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException(("Role not found")));
             roles.add(userRole);
         } else {
             request.getRoles().forEach(role -> {
-                if(role.equals("admin")) {
+                if (role.equals("admin")) {
                     Role adminRole = roleRepository.findByName(UserRole.ROLE_ADMIN)
                             .orElseThrow(() -> new RuntimeException(("Role not found")));
                     roles.add(adminRole);
                 }
-                if(role.equals("user")) {
+                if (role.equals("user")) {
                     Role userRole = roleRepository.findByName(UserRole.ROLE_USER)
                             .orElseThrow(() -> new RuntimeException(("Role not found")));
                     roles.add(userRole);
@@ -59,6 +60,6 @@ public class UserService {
         }
         user.setRoles(roles);
         userRepository.save(user);
-        return new MessageResponse("User registered successfully");
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 }

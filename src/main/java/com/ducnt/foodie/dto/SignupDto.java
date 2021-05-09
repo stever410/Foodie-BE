@@ -11,7 +11,7 @@ import java.util.Set;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignupRequest {
+public class SignupDto {
 
     @Email(message = "Invalid email")
     private String email;

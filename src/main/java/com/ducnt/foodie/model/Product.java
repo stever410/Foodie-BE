@@ -33,13 +33,13 @@ public class Product {
     private String description;
 
     @Column(name = "price")
-    private Double price;
+    private double price;
 
     @Column(name = "image")
     private String image;
 
     @Column(name = "quantity")
-    private Integer quantity;
+    private int quantity;
 
     @Column(name = "created_date")
     @CreationTimestamp

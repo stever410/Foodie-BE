@@ -1,7 +1,7 @@
 package com.ducnt.foodie.controller;
 
-import com.ducnt.foodie.dto.MessageResponse;
-import com.ducnt.foodie.dto.SignupRequest;
+import com.ducnt.foodie.dto.SignupDto;
+import com.ducnt.foodie.model.User;
 import com.ducnt.foodie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<MessageResponse> registerUser(@Validated @RequestBody SignupRequest request) {
-        return ResponseEntity.ok(userService.addNewUser(request));
+    public ResponseEntity<User> registerUser(@Validated @RequestBody SignupDto request) {
+        return userService.addNewUser(request);
     }
 }
